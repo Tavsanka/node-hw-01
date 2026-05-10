@@ -5,18 +5,16 @@ const path = require("node:path");
 const contactsPath = "./db/contacts.json";
 
 function listContacts() {
-  const file = fs.readFile(path.resolve(contactsPath));
+  const file = fs.readFile(path.resolve(contactsPath), "utf-8");
   file.then((content) => {
-    const fileStr = content.toString();
-    console.table(JSON.parse(fileStr));
+    console.table(JSON.parse(content));
   });
 }
 
 function getContactById(contactId) {
-  const file = fs.readFile(path.resolve(contactsPath));
+  const file = fs.readFile(path.resolve(contactsPath), "utf-8");
   file.then((content) => {
-    const fileStr = content.toString();
-    const result = JSON.parse(fileStr);
+    const result = JSON.parse(content);
     console.log(result.find((contact) => contact.id == contactId));
   });
 }
